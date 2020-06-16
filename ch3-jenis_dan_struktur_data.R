@@ -121,3 +121,84 @@ mat2 %*% mat1
 # 3. Dataframe ----
 
 ## 3.1 membuat dataframe ----
+
+teman <- data.frame(
+  nama = c("Andi", "Ani", "Rosa", "Riski"),
+  usia = c(18, 17, 17, 19),
+  tinggi = c(170, 164, 165, 160),
+  # pastikan karakter tidak dikonversi menjadi factor
+  stringsAsFactors = FALSE
+)
+
+## 3.2 cek kelas sebuah objek ----
+class(teman)
+
+## 3.3 cek dimensi -----
+dim(teman)
+
+nrow(teman) # jumlah baris
+ncol(teman) # jumlah kolom
+
+## 3.4 melakukan subset pada dataframe ----
+teman[,1] # ambil kolom 1
+teman[c(1,2), 3] # ambil kolom ke 3 dan baris ke 1 dan 2
+teman["tinggi"] # ambil kolom dengan nama tinggi
+teman$nama # ambil kolom nama
+teman[1] # ambil kolom 1
+
+## 3.5 menambah atau merubah nilai elemen dataframe ----
+
+### menambahkan kolom status pekerjaan pada dataframe
+teman["status"] <- c("bekerja", "mahasiswa", "mahasiswa", "bekerja")
+
+### koreksi nilai pada baris ke 2 kolom 2
+teman[2,2] <- 19
+
+## 3.6 operasi pada dataframe ----
+
+### konversi satuan tinggi ke m
+teman["tinggi"] <- teman["tinggi"]/100
+
+### hitung rasio usia dan tinggi badan
+teman["rasio"] <- teman$usia / teman$tinggi
+
+# 4. List
+
+vec_num <- c(1,2,4.5, 6)
+df <- teman
+mat <- matrix(1:6, nrow = 3)
+
+## 4.1 membuat list -----
+lst <- list(
+  vector = vec_num,
+  dataframe = df,
+  matrix = mat
+)
+
+## 4.2 cek kelas sebuah objek ----
+class(lst)
+
+
+## 4.3 melakukan subset pada list ----
+### ambil elemen ke 2 list
+lst[2] # menghasilkan list
+lst[[2]] # menghasilkan dataframe/ objek asalnya
+lst$dataframe # menghasilkan dataframe
+
+### ambil nilai baris ke 1 dan kolom 2 pada elemen ke 2 list
+lst[[2]][1,2]
+
+
+## 4.4 menambahkan atau merubah elemen list ----
+### menambahkan elemen dengan nama atom
+lst["atom"] <- 4
+
+### menghapus elemen dengan nama atom
+lst["atom"] <- NULL
+
+### mengambil elemen ke 1 dan 3
+lst[c(1,3)]
+
+### menambahkan kolom pada matrix
+add <- c(10,11,12)
+lst[[3]] <- cbind(lst[[3]], add)
